@@ -39,13 +39,13 @@ renderer.toneMappingExposure = 1.2;
 // ============================================
 // Lighting
 // ============================================
-const ambientLight = new THREE.AmbientLight(0x1a1a3e, 0.6);
+const ambientLight = new THREE.AmbientLight(0x40407a, 2.5); // Brighter ambient
 scene.add(ambientLight);
 
-const hemiLight = new THREE.HemisphereLight(0x4285F4, 0x0a0a1a, 0.4);
+const hemiLight = new THREE.HemisphereLight(0x4285F4, 0x151530, 2.0); // Brighter hemisphere
 scene.add(hemiLight);
 
-const moonLight = new THREE.DirectionalLight(0x8888cc, 0.6);
+const moonLight = new THREE.DirectionalLight(0xffffff, 3.0); // Brighter directional light
 moonLight.position.set(50, 100, 50);
 scene.add(moonLight);
 

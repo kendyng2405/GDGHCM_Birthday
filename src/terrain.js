@@ -10,9 +10,9 @@ const GOOGLE_COLORS = {
 };
 
 const COLOR_BANDS = [
-  { h: 0.0, color: new THREE.Color(0x0d0d2b) },   // Valley floor — deep dark
-  { h: 0.15, color: new THREE.Color(0x151540) },   // Low slopes
-  { h: 0.3, color: new THREE.Color(0x1a3a6e) },    // Mid — blue tint
+  { h: 0.0, color: new THREE.Color(0x2a3b6e) },   // Valley floor — dark blueish
+  { h: 0.15, color: new THREE.Color(0x354b85) },   // Low slopes - lighter
+  { h: 0.3, color: new THREE.Color(0x4285F4) },    // Mid — Google blue
   { h: 0.5, color: new THREE.Color(0x4285F4) },    // Google blue
   { h: 0.65, color: new THREE.Color(0x34A853) },   // Google green
   { h: 0.8, color: new THREE.Color(0xEA4335) },    // Google red peaks

@@ -35,9 +35,8 @@ export function createParticles(totalLength, count = 50) {
 
     sprite.position.set(x, y, z);
     
-    // Scale sprite to a reasonable photo size, preserving roughly 4:3 or 16:9 aspect ratio
-    // Assuming mostly landscape photos
-    const scaleFactor = Math.random() * 3 + 3;
+    // Scale sprite to a reasonable photo size, making them larger as requested
+    const scaleFactor = Math.random() * 5 + 6; // Range: 6 to 11
     sprite.scale.set(scaleFactor * 1.5, scaleFactor, 1);
 
     group.add(sprite);
