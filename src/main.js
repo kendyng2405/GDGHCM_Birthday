@@ -144,7 +144,8 @@ function generateTimeline() {
 // ============================================
 // Scroll Handling
 // ============================================
-let scrollProgress = 0;
+let targetScrollProgress = 0;
+let currentScrollProgress = 0;
 let currentYear = 2013;
 const yearIndicator = document.getElementById('year-indicator');
 const yearText = document.getElementById('year-text');
@@ -152,33 +153,7 @@ const progressFill = document.getElementById('progress-fill');
 
 function onScroll() {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  scrollProgress = Math.max(0, Math.min(1, window.scrollY / maxScroll));
-
-  // Update camera
-  const pos = getCameraPosition(scrollProgress);
-  const lookAt = getCameraLookAt(scrollProgress);
-  camera.position.set(pos.x, pos.y, pos.z);
-  camera.lookAt(lookAt.x, lookAt.y, lookAt.z);
-
-  // Update year indicator
-  const eventIndex = Math.floor(scrollProgress * EVENTS.length);
-  const event = EVENTS[Math.min(eventIndex, EVENTS.length - 1)];
-  if (event && event.year !== currentYear) {
-    currentYear = event.year;
-    if (yearText) {
-      yearText.textContent = currentYear;
-      yearText.style.color = event.color;
-      yearText.style.textShadow = `0 0 20px ${event.color}80`;
-    }
-  }
-  if (progressFill) {
-    progressFill.style.height = `${scrollProgress * 100}%`;
-  }
-
-  // Show/hide year indicator
-  if (yearIndicator) {
-    yearIndicator.classList.toggle('visible', scrollProgress > 0.02 && scrollProgress < 0.95);
-  }
+  targetScrollProgress = Math.max(0, Math.min(1, window.scrollY / maxScroll));
 }
 
 // ============================================
@@ -317,6 +292,35 @@ function animate() {
   requestAnimationFrame(animate);
 
   const elapsed = clock.getElapsedTime();
+
+  // Smooth scroll interpolation (Lerp)
+  currentScrollProgress += (targetScrollProgress - currentScrollProgress) * 0.08;
+
+  // Update camera based on smoothed progress
+  const pos = getCameraPosition(currentScrollProgress);
+  const lookAt = getCameraLookAt(currentScrollProgress);
+  camera.position.set(pos.x, pos.y, pos.z);
+  camera.lookAt(lookAt.x, lookAt.y, lookAt.z);
+
+  // Update year indicator
+  const eventIndex = Math.floor(currentScrollProgress * EVENTS.length);
+  const event = EVENTS[Math.min(eventIndex, EVENTS.length - 1)];
+  if (event && event.year !== currentYear) {
+    currentYear = event.year;
+    if (yearText) {
+      yearText.textContent = currentYear;
+      yearText.style.color = event.color;
+      yearText.style.textShadow = `0 0 20px ${event.color}80`;
+    }
+  }
+  if (progressFill) {
+    progressFill.style.height = `${currentScrollProgress * 100}%`;
+  }
+
+  // Show/hide year indicator
+  if (yearIndicator) {
+    yearIndicator.classList.toggle('visible', currentScrollProgress > 0.02 && currentScrollProgress < 0.95);
+  }
 
   // Animate particles
   updateParticles(particles, elapsed);
