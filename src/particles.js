@@ -95,17 +95,26 @@ export function createStars(count = 2000) {
 }
 
 // Animate floating photos
-export function updateParticles(particleGroup, time) {
+export function updateParticles(particleGroup, time, scrollProgress = 1) {
   const initial = particleGroup.userData.initialPositions;
   if (!initial) return;
 
-  particleGroup.children.forEach((sprite, i) => {
-    const data = initial[i];
-    // Gentle floating effect for photos
-    sprite.position.x = data.x + Math.sin(time * 0.2 + data.phase) * 3;
-    sprite.position.y = data.y + Math.sin(time * 0.3 + data.phase * 2) * 2;
-    
-    // Slow rotation trick by subtly changing scale to fake 3D flip (optional)
-    // sprite.scale.x = Math.abs(Math.cos(time * 0.5 + data.phase)) * (sprite.scale.y * 1.5);
-  });
+  // Fade opacity from 0 to 0.85 when scrollProgress goes from 0.01 to 0.05
+  const targetOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.01) * 25)) * 0.85;
+
+  // Completely hide them from the DOM rendering if opacity is 0 to save performance
+  particleGroup.visible = targetOpacity > 0;
+
+  if (targetOpacity > 0) {
+    particleGroup.children.forEach((sprite, i) => {
+      const data = initial[i];
+      // Gentle floating effect for photos
+      sprite.position.x = data.x + Math.sin(time * 0.2 + data.phase) * 3;
+      sprite.position.y = data.y + Math.sin(time * 0.3 + data.phase * 2) * 2;
+      
+      // Update opacity
+      sprite.material.opacity = targetOpacity;
+    });
+  }
 }
+

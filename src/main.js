@@ -348,8 +348,8 @@ function animate() {
     yearIndicator.classList.toggle('visible', currentScrollProgress > 0.02 && currentScrollProgress < 0.95);
   }
 
-  // Animate particles
-  updateParticles(particles, elapsed);
+  // Animate particles (pass scroll progress to fade in)
+  updateParticles(particles, elapsed, currentScrollProgress);
 
   // Slowly rotate stars
   if (stars) {
