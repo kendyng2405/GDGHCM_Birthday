@@ -11,7 +11,11 @@ export function createParticles(totalLength, count = 50) {
   // Pick a random subset of URLs to prevent loading 800+ textures at startup
   const shuffled = [...PHOTO_URLS].sort(() => 0.5 - Math.random());
   const selectedUrls = shuffled.slice(0, count);
-  const textures = selectedUrls.map(url => textureLoader.load(url));
+  const textures = selectedUrls.map(url => {
+    const tex = textureLoader.load(url);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    return tex;
+  });
 
   const initialPositions = [];
 
