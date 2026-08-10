@@ -1,4 +1,5 @@
 // GDG HCMC Timeline Events Data — Emotional Text Version (Vi/En)
+import { ALL_PHOTOS, YEAR_PHOTOS } from './image_data.js';
 
 export const EVENTS = [
   {
@@ -229,11 +230,6 @@ export const GOOGLE_COLORS = {
 
 export const GOOGLE_COLORS_ARRAY = ['#4285F4', '#EA4335', '#FBBC04', '#34A853'];
 
-// Giả lập danh sách ảnh GDG cho cơn mưa ảnh. (Sau này người dùng có thể tự thêm ảnh vào Image/ và cập nhật mảng này)
-export const PHOTO_URLS = [
-  'Image/2013_(1).jpg',
-  'Image/04-10-2013_EntrepreneurWeek.jpg',
-  'Image/09-11-2013_GDays.jpg',
-  'Image/18-10-2013_YoutubeXGDG.jpg',
-  'Image/27-10-2013_GoogleCloudAdventure.jpg'
-];
+// Export to other modules
+export const PHOTO_URLS = ALL_PHOTOS;
+export { YEAR_PHOTOS };

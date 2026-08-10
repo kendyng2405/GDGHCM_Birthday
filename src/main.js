@@ -1,7 +1,7 @@
 // main.js — GDG HCMC 13th Birthday 3D Timeline
 // Entry point: Scene setup, camera, scroll sync, HTML generation
 import * as THREE from 'three';
-import { EVENTS, GOOGLE_COLORS_ARRAY, PHOTO_URLS } from './events.js';
+import { EVENTS, GOOGLE_COLORS_ARRAY, PHOTO_URLS, YEAR_PHOTOS } from './events.js';
 import { createTerrain, createEventMarkers } from './terrain.js';
 import { createParticles, createStars, updateParticles } from './particles.js';
 
@@ -149,8 +149,14 @@ let activeBgLayer = 1;
 
 function updateBackground(year) {
   if (!bgLayer1 || !bgLayer2) return;
-  const photoIndex = (year - 2013) % PHOTO_URLS.length;
-  const bgUrl = `url('${PHOTO_URLS[Math.max(0, photoIndex)]}')`;
+  
+  let bgUrl = '';
+  // Get photos for current year, fallback to all photos if empty
+  let pool = YEAR_PHOTOS[year] && YEAR_PHOTOS[year].length > 0 ? YEAR_PHOTOS[year] : PHOTO_URLS;
+  if (pool.length > 0) {
+    const photoIndex = Math.floor(Math.random() * pool.length);
+    bgUrl = `url('${pool[photoIndex]}')`;
+  }
 
   if (activeBgLayer === 1) {
     bgLayer2.style.backgroundImage = bgUrl;
