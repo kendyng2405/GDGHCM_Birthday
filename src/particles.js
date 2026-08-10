@@ -31,7 +31,9 @@ export function createParticles(totalLength, count = 50) {
     // Randomize positions evenly across the screen (removed mountains allows lower placement)
     const x = (Math.random() - 0.5) * 80; // Spread horizontally
     const y = (Math.random() - 0.5) * 40; // Spread vertically from -20 to +20
-    const z = -Math.random() * totalLength; // Spread along the path
+    
+    // Start spawning deeper into the timeline (-80) so they don't block the intro text
+    const z = -80 - Math.random() * totalLength; // Spread along the path
 
     sprite.position.set(x, y, z);
     
