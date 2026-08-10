@@ -28,9 +28,9 @@ export function createParticles(totalLength, count = 50) {
 
     const sprite = new THREE.Sprite(material);
 
-    // Randomize positions along the canyon
+    // Randomize positions evenly across the screen (removed mountains allows lower placement)
     const x = (Math.random() - 0.5) * 80; // Spread horizontally
-    const y = Math.random() * 30 + 5;     // Spread vertically
+    const y = (Math.random() - 0.5) * 40; // Spread vertically from -20 to +20
     const z = -Math.random() * totalLength; // Spread along the path
 
     sprite.position.set(x, y, z);

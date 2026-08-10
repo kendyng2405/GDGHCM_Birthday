@@ -52,9 +52,10 @@ scene.add(moonLight);
 // ============================================
 // Terrain
 // ============================================
-const terrain = createTerrain(TOTAL_LENGTH);
-terrain.position.set(0, 0, -TOTAL_LENGTH / 2 + UNIT_PER_EVENT / 2);
-scene.add(terrain);
+// Removed terrain based on user feedback
+// const terrain = createTerrain(TOTAL_LENGTH);
+// terrain.position.set(0, 0, -TOTAL_LENGTH / 2 + UNIT_PER_EVENT / 2);
+// scene.add(terrain);
 
 // ============================================
 // Event Markers
