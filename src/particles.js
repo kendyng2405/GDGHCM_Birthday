@@ -1,67 +1,69 @@
-// particles.js — Floating particles + stars for atmosphere
+// particles.js — Floating GDG Photos instead of simple particles
 import * as THREE from 'three';
+import { GOOGLE_COLORS_ARRAY, PHOTO_URLS } from './events.js';
 
-const GOOGLE_COLORS = [0x4285F4, 0xEA4335, 0xFBBC04, 0x34A853];
+// Floating Photo Sprites along the path
+export function createParticles(totalLength, count = 100) {
+  const group = new THREE.Group();
+  
+  const textureLoader = new THREE.TextureLoader();
+  const textures = PHOTO_URLS.map(url => textureLoader.load(url));
 
-// Floating particles along the path
-export function createParticles(totalLength, count = 600) {
-  const geometry = new THREE.BufferGeometry();
-  const positions = new Float32Array(count * 3);
-  const colors = new Float32Array(count * 3);
-  const sizes = new Float32Array(count);
+  const initialPositions = [];
 
+  // We use less count than points, because photos are bigger
   for (let i = 0; i < count; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * 120;
-    positions[i * 3 + 1] = Math.random() * 40 + 2;
-    positions[i * 3 + 2] = -Math.random() * totalLength;
+    // Randomly pick a texture
+    const tex = textures[Math.floor(Math.random() * textures.length)];
+    
+    const material = new THREE.SpriteMaterial({
+      map: tex,
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.85
+    });
 
-    const color = new THREE.Color(GOOGLE_COLORS[i % 4]);
-    colors[i * 3] = color.r;
-    colors[i * 3 + 1] = color.g;
-    colors[i * 3 + 2] = color.b;
+    const sprite = new THREE.Sprite(material);
 
-    sizes[i] = Math.random() * 2.5 + 0.5;
+    // Randomize positions along the canyon
+    const x = (Math.random() - 0.5) * 80; // Spread horizontally
+    const y = Math.random() * 30 + 5;     // Spread vertically
+    const z = -Math.random() * totalLength; // Spread along the path
+
+    sprite.position.set(x, y, z);
+    
+    // Scale sprite to a reasonable photo size, preserving roughly 4:3 or 16:9 aspect ratio
+    // Assuming mostly landscape photos
+    const scaleFactor = Math.random() * 3 + 3;
+    sprite.scale.set(scaleFactor * 1.5, scaleFactor, 1);
+
+    group.add(sprite);
+
+    initialPositions.push({ x, y, z, phase: Math.random() * Math.PI * 2 });
   }
 
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-  geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-
-  const material = new THREE.PointsMaterial({
-    size: 1.5,
-    vertexColors: true,
-    transparent: true,
-    opacity: 0.6,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
-    sizeAttenuation: true,
-  });
-
-  const points = new THREE.Points(geometry, material);
-  points.userData.initialPositions = positions.slice();
-  return points;
+  group.userData.initialPositions = initialPositions;
+  return group;
 }
 
-// Stars in the sky dome
+// Stars in the sky dome (Keep this for atmosphere)
 export function createStars(count = 2000) {
   const geometry = new THREE.BufferGeometry();
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
 
   for (let i = 0; i < count; i++) {
-    // Sphere distribution for sky dome
     const theta = Math.random() * Math.PI * 2;
-    const phi = Math.acos(Math.random() * 0.8 + 0.2); // Upper hemisphere bias
+    const phi = Math.acos(Math.random() * 0.8 + 0.2); 
     const r = 400 + Math.random() * 200;
 
     positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
     positions[i * 3 + 1] = r * Math.cos(phi);
     positions[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
 
-    // Mostly white with some colored stars
     const brightness = 0.5 + Math.random() * 0.5;
     if (Math.random() < 0.1) {
-      const c = new THREE.Color(GOOGLE_COLORS[Math.floor(Math.random() * 4)]);
+      const c = new THREE.Color(GOOGLE_COLORS_ARRAY[Math.floor(Math.random() * 4)]);
       colors[i * 3] = c.r * brightness;
       colors[i * 3 + 1] = c.g * brightness;
       colors[i * 3 + 2] = c.b * brightness;
@@ -88,21 +90,18 @@ export function createStars(count = 2000) {
   return new THREE.Points(geometry, material);
 }
 
-// Animate floating particles
-export function updateParticles(particles, time) {
-  const positions = particles.geometry.attributes.position;
-  const initial = particles.userData.initialPositions;
+// Animate floating photos
+export function updateParticles(particleGroup, time) {
+  const initial = particleGroup.userData.initialPositions;
   if (!initial) return;
 
-  for (let i = 0; i < positions.count; i++) {
-    const ix = initial[i * 3];
-    const iy = initial[i * 3 + 1];
-    const iz = initial[i * 3 + 2];
-
-    positions.setX(i, ix + Math.sin(time * 0.3 + i * 0.1) * 2);
-    positions.setY(i, iy + Math.sin(time * 0.5 + i * 0.05) * 1.5);
-    positions.setZ(i, iz + Math.cos(time * 0.2 + i * 0.08) * 1);
-  }
-
-  positions.needsUpdate = true;
+  particleGroup.children.forEach((sprite, i) => {
+    const data = initial[i];
+    // Gentle floating effect for photos
+    sprite.position.x = data.x + Math.sin(time * 0.2 + data.phase) * 3;
+    sprite.position.y = data.y + Math.sin(time * 0.3 + data.phase * 2) * 2;
+    
+    // Slow rotation trick by subtly changing scale to fake 3D flip (optional)
+    // sprite.scale.x = Math.abs(Math.cos(time * 0.5 + data.phase)) * (sprite.scale.y * 1.5);
+  });
 }

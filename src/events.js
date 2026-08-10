@@ -1,251 +1,225 @@
-// GDG HCMC Timeline Events Data — Bilingual (Vi/En)
-// Each event has: year, date, titleVi, titleEn, descVi, descEn, image (optional), icon, color
+// GDG HCMC Timeline Events Data — Emotional Text Version (Vi/En)
 
 export const EVENTS = [
   {
     year: 2013,
     date: '2013',
-    titleVi: '🎉 Thành lập GDG Vietnam / HCMC',
-    titleEn: '🎉 GDG Vietnam / HCMC Founded',
-    descVi: 'Cộng đồng Google Developer Group chính thức được thành lập tại TP. Hồ Chí Minh — nơi khởi đầu của hành trình 13 năm.',
-    descEn: 'Google Developer Group officially established in Ho Chi Minh City — the beginning of a 13-year journey.',
-    image: 'Image/2013_(1).jpg',
-    color: '#4285F4' // Google Blue
+    titleVi: 'Hạt giống đầu tiên được gieo mầm',
+    titleEn: 'The First Seed Planted',
+    descVi: 'Mọi thứ bắt đầu từ một ý tưởng nhỏ: tạo ra một sân chơi cho những người yêu công nghệ. Những ngày đầu ấy, cộng đồng GDG HCMC chỉ là một nhóm nhỏ đam mê code, nhưng ngọn lửa nhiệt huyết đã bắt đầu rực sáng.',
+    descEn: 'Everything started with a simple idea: creating a playground for tech enthusiasts. In those early days, GDG HCMC was just a small group of passionate coders, but the fire of enthusiasm had begun to burn bright.',
+    color: '#4285F4'
   },
   {
     year: 2013,
     date: '04/10/2013',
-    titleVi: '🚀 Google for Entrepreneurs Week',
-    titleEn: '🚀 Google for Entrepreneurs Week',
-    descVi: 'Sự kiện Khởi nghiệp cùng Google — kết nối cộng đồng startup và lập trình viên Việt Nam.',
-    descEn: 'Startup event with Google — connecting the startup community and Vietnamese developers.',
-    image: 'Image/04-10-2013_EntrepreneurWeek.jpg',
-    color: '#EA4335' // Google Red
+    titleVi: 'Khát khao khởi nghiệp',
+    titleEn: 'The Startup Aspiration',
+    descVi: 'Google for Entrepreneurs Week không chỉ là một sự kiện. Đó là nơi những giấc mơ startup lần đầu tiên được chắp cánh. Chúng ta đã cùng nhau ngồi lại, bàn về tương lai, về những dòng code sẽ thay đổi thế giới.',
+    descEn: 'Google for Entrepreneurs Week was more than an event. It was where startup dreams took flight for the first time. We sat together, discussing the future and the lines of code that would change the world.',
+    color: '#EA4335'
   },
   {
     year: 2013,
     date: '18/10/2013',
-    titleVi: '🎬 YouTube × GDG Workshop',
-    titleEn: '🎬 YouTube × GDG Workshop',
-    descVi: 'Workshop YouTube Creator — chia sẻ kiến thức về nền tảng video lớn nhất thế giới.',
-    descEn: 'YouTube Creator Workshop — sharing knowledge about the world\'s largest video platform.',
-    image: 'Image/18-10-2013_YoutubeXGDG.jpg',
+    titleVi: 'Lan tỏa qua từng khung hình',
+    titleEn: 'Spreading Through Frames',
+    descVi: 'YouTube × GDG Workshop đánh dấu sự vươn mình ra khỏi màn hình dòng lệnh. Các nhà sáng tạo nội dung và lập trình viên tìm thấy tiếng nói chung, cùng chia sẻ đam mê kết nối con người qua nền tảng video.',
+    descEn: 'YouTube × GDG Workshop marked our expansion beyond the command line. Content creators and developers found common ground, sharing a passion for connecting people through video platforms.',
     color: '#EA4335'
   },
   {
     year: 2013,
     date: '27/10/2013',
-    titleVi: '☁️ Google Cloud Adventure',
-    titleEn: '☁️ Google Cloud Adventure',
-    descVi: 'Khám phá Google Cloud Platform — bước đầu tiên vào thế giới điện toán đám mây.',
-    descEn: 'Exploring Google Cloud Platform — the first step into the world of cloud computing.',
-    image: 'Image/27-10-2013_GoogleCloudAdventure.jpg',
+    titleVi: 'Chạm tới những đám mây',
+    titleEn: 'Touching the Clouds',
+    descVi: 'Google Cloud Adventure là chuyến phiêu lưu đầy thú vị vào thế giới điện toán đám mây. Chúng tôi nhận ra giới hạn vật lý không còn là rào cản, và những ý tưởng có thể bay cao không giới hạn.',
+    descEn: 'Google Cloud Adventure was an exciting journey into the world of cloud computing. We realized physical boundaries were no longer a barrier, and our ideas could fly without limits.',
     color: '#4285F4'
   },
   {
     year: 2013,
     date: '09/11/2013',
-    titleVi: '🎪 GDays Vietnam — Big Event 2013',
-    titleEn: '🎪 GDays Vietnam — Big Event 2013',
-    descVi: 'Sự kiện công nghệ lớn đầu tiên của GDG — quy tụ hàng trăm lập trình viên và chuyên gia Google.',
-    descEn: 'The first major tech event by GDG — gathering hundreds of developers and Google experts.',
-    image: 'Image/09-11-2013_GDays.jpg',
-    color: '#FBBC04' // Google Yellow
+    titleVi: 'Ngày hội lớn đầu tiên — GDays',
+    titleEn: 'The First Grand Festival — GDays',
+    descVi: 'GDays Vietnam là sự kiện bùng nổ thực sự. Hàng trăm lập trình viên tề tựu. Âm thanh của bàn phím, tiếng cười, và những cái bắt tay thật chặt. Một cảm giác tự hào len lỏi: Chúng ta không còn đơn độc trên hành trình này.',
+    descEn: 'GDays Vietnam was a true explosion. Hundreds of developers gathered. The sound of keyboards, laughter, and firm handshakes. A sense of pride emerged: We are no longer alone on this journey.',
+    color: '#FBBC04'
   },
   {
     year: 2014,
     date: '2014',
-    titleVi: '📱 Android Study Jam & I/O Extended',
-    titleEn: '📱 Android Study Jam & I/O Extended',
-    descVi: 'Workshop học Android cho lập trình viên. Google I/O Extended mang Material Design và Android L đến cộng đồng HCMC.',
-    descEn: 'Android learning workshops for developers. Google I/O Extended brought Material Design and Android L to the HCMC community.',
-    image: null,
-    color: '#34A853' // Google Green
+    titleVi: 'Android & Material Design',
+    titleEn: 'Android & Material Design',
+    descVi: 'Giai đoạn bùng nổ của di động. Android Study Jam mang đến hàng ngàn giờ học code cùng nhau. I/O Extended giới thiệu Material Design, làm thay đổi hoàn toàn tư duy thiết kế của các nhà phát triển Việt Nam.',
+    descEn: 'The mobile boom era. Android Study Jam brought thousands of hours coding together. I/O Extended introduced Material Design, completely shifting the design mindset of Vietnamese developers.',
+    color: '#34A853'
   },
   {
     year: 2015,
     date: '2015',
-    titleVi: '🔥 DevFest HCMC 2015',
-    titleEn: '🔥 DevFest HCMC 2015',
-    descVi: 'DevFest đầu tiên tại HCMC — Firebase, AngularJS, Android workshops thu hút đông đảo lập trình viên.',
-    descEn: 'First DevFest in HCMC — Firebase, AngularJS, Android workshops attracted many developers.',
-    image: null,
+    titleVi: 'Ngọn lửa DevFest bùng cháy',
+    titleEn: 'The DevFest Fire Ignites',
+    descVi: 'Kỳ DevFest đầu tiên tại HCMC. Mồ hôi, nước tăng lực và những đêm thức trắng chuẩn bị. Nhưng khi nhìn thấy hội trường chật kín lập trình viên say sưa với Firebase và AngularJS, mọi mệt mỏi đều tan biến.',
+    descEn: 'The very first DevFest in HCMC. Sweat, energy drinks, and sleepless nights of preparation. But seeing the hall packed with developers enthralled by Firebase and AngularJS, all fatigue vanished.',
     color: '#4285F4'
   },
   {
     year: 2016,
     date: '2016',
-    titleVi: '🤖 DevFest HCMC 2016',
-    titleEn: '🤖 DevFest HCMC 2016',
-    descVi: 'Khám phá TensorFlow, Android Nougat, và Firebase — AI/ML bắt đầu trở thành xu hướng.',
-    descEn: 'Exploring TensorFlow, Android Nougat, and Firebase — AI/ML began trending.',
-    image: null,
+    titleVi: 'Bước chân vào kỷ nguyên AI',
+    titleEn: 'Entering the AI Era',
+    descVi: 'TensorFlow xuất hiện. AI và Machine Learning bắt đầu trở thành từ khóa nóng. Các cuộc thảo luận tại sự kiện năm nay sâu sắc hơn, mở ra những viễn cảnh tương lai về một thế giới được dẫn dắt bởi dữ liệu.',
+    descEn: 'TensorFlow arrived. AI and Machine Learning became hot keywords. Discussions at this year’s events grew deeper, opening up future visions of a data-driven world.',
     color: '#EA4335'
   },
   {
     year: 2017,
     date: '2017',
-    titleVi: '🌐 DevFest HCMC 2017',
-    titleEn: '🌐 DevFest HCMC 2017',
-    descVi: 'Kotlin trở thành ngôn ngữ chính thức cho Android. PWA và Cloud Functions mở ra kỷ nguyên mới.',
-    descEn: 'Kotlin became official for Android. PWA and Cloud Functions opened a new era.',
-    image: null,
+    titleVi: 'Sự vươn lên của Kotlin & PWA',
+    titleEn: 'The Rise of Kotlin & PWA',
+    descVi: 'Năm của những công nghệ cách mạng. Kotlin được Google công nhận, mang lại luồng gió mới cho Android. Progressive Web Apps (PWA) làm lu mờ ranh giới giữa web và app di động. Cộng đồng cùng nhau khám phá những chân trời mới.',
+    descEn: 'A year of revolutionary tech. Kotlin was recognized by Google, breathing new life into Android. PWAs blurred the line between web and mobile apps. The community explored new horizons together.',
     color: '#FBBC04'
   },
   {
     year: 2018,
     date: '2018',
-    titleVi: '💡 DevFest HCMC 2018',
-    titleEn: '💡 DevFest HCMC 2018',
-    descVi: 'Chuỗi workshop chuyên sâu: Web Payment, ARCore, Android Jetpack, Big Data, và Machine Learning.',
-    descEn: 'Deep-dive workshop series: Web Payment, ARCore, Android Jetpack, Big Data, and Machine Learning.',
-    image: null,
+    titleVi: 'Đi sâu vào chất lượng',
+    titleEn: 'Diving Deep into Quality',
+    descVi: 'Không chỉ là bề nổi, cộng đồng bắt đầu tìm hiểu sâu về Web Payment, ARCore và Android Jetpack. Các workshop trở thành nơi tranh luận nảy lửa và gỡ rối kỹ thuật, nâng tầm trình độ của mọi người.',
+    descEn: 'Beyond the surface, the community delved into Web Payment, ARCore, and Android Jetpack. Workshops became arenas for heated debates and technical debugging, elevating everyone’s skills.',
     color: '#34A853'
   },
   {
     year: 2019,
     date: '2019',
-    titleVi: '🦋 Flutter Festival & DevFest 2019',
-    titleEn: '🦋 Flutter Festival & DevFest 2019',
-    descVi: 'Flutter và Dart trở thành tâm điểm. Cộng đồng phát triển mạnh mẽ với Google Cloud và Firebase.',
-    descEn: 'Flutter and Dart took center stage. Community grew strongly with Google Cloud and Firebase.',
-    image: null,
+    titleVi: 'Cơn bão màu xanh — Flutter',
+    titleEn: 'The Blue Storm — Flutter',
+    descVi: 'Flutter gieo rắc sự hào hứng ở khắp mọi nơi. Flutter Festival đã tạo nên một làn sóng nhiệt huyết mới, minh chứng rằng việc viết code có thể mang lại niềm vui rực rỡ và tốc độ đáng kinh ngạc.',
+    descEn: 'Flutter spread excitement everywhere. The Flutter Festival created a new wave of enthusiasm, proving that coding could bring brilliant joy and incredible speed.',
     color: '#4285F4'
   },
   {
     year: 2020,
     date: '2020',
-    titleVi: '🏠 DevFest 2020 — Kỷ nguyên Online',
-    titleEn: '🏠 DevFest 2020 — The Online Era',
-    descVi: 'COVID-19 thay đổi mọi thứ. GDG HCMC chuyển sang sự kiện trực tuyến, kết nối cộng đồng vượt qua khoảng cách.',
-    descEn: 'COVID-19 changed everything. GDG HCMC transitioned to online events, connecting community beyond distance.',
-    image: null,
+    titleVi: 'Kết nối qua những màn hình',
+    titleEn: 'Connecting Through Screens',
+    descVi: 'Thế giới chững lại vì đại dịch, nhưng chúng ta thì không. Mọi sự kiện chuyển sang online. Dù chỉ nhìn nhau qua webcam, sự gắn kết vẫn chặt chẽ. Đó là năm chúng ta học được sự kiên cường của một cộng đồng đích thực.',
+    descEn: 'The world paused due to the pandemic, but we didn’t. Events went online. Even though we only saw each other through webcams, the bond remained tight. That year, we learned the resilience of a true community.',
     color: '#EA4335'
   },
   {
     year: 2021,
     date: '12/2021',
-    titleVi: '💻 DevFest 2021 — 10,000+ người tham gia',
-    titleEn: '💻 DevFest 2021 — 10,000+ Attendees',
-    descVi: 'Sự kiện trực tuyến lớn nhất từ trước tới nay với hơn 10,000 người tham gia. Flutter training series thu hút đông đảo.',
-    descEn: 'The largest online event ever with 10,000+ attendees. Flutter training series attracted massive participation.',
-    image: null,
+    titleVi: 'Phá vỡ mọi giới hạn',
+    titleEn: 'Breaking All Limits',
+    descVi: 'Hơn 10,000 người tham dự DevFest online. Không còn rào cản địa lý. Lập trình viên từ khắp mọi miền đất nước hội tụ. Đó là một con số choáng ngợp, khẳng định sức mạnh vô hình mà công nghệ mang lại.',
+    descEn: 'Over 10,000 attendees at the online DevFest. Geographical barriers disappeared. Developers from all over the country gathered. It was an overwhelming number, affirming the invisible power of tech.',
     color: '#FBBC04'
   },
   {
     year: 2022,
     date: '2022',
-    titleVi: '🎯 DevFest Week 2022 & WTM HCMC',
-    titleEn: '🎯 DevFest Week 2022 & WTM HCMC',
-    descVi: 'DevFest mở rộng thành chuỗi sự kiện 1 tuần: Workshop, Hackathon, Networking. Women Techmakers HCMC chính thức ra mắt.',
-    descEn: 'DevFest expanded to a week-long event series: Workshops, Hackathon, Networking. Women Techmakers HCMC officially launched.',
-    image: null,
+    titleVi: 'Hội ngộ và tôn vinh phái nữ',
+    titleEn: 'Reunion and Honoring Women',
+    descVi: 'Chúng ta cuối cùng cũng gặp lại nhau trực tiếp. Những cái ôm, tiếng cười rộn rã. Đặc biệt, Women Techmakers HCMC ra mắt, đánh dấu bước tiến quan trọng trong việc tôn vinh và trao quyền cho nữ giới trong ngành công nghệ.',
+    descEn: 'We finally met face-to-face again. Hugs and roaring laughter. Notably, Women Techmakers HCMC launched, marking a significant step in honoring and empowering women in tech.',
     color: '#34A853'
   },
   {
     year: 2023,
     date: '08/07/2023',
-    titleVi: '🤖 Google I/O Extended HCMC 2023',
-    titleEn: '🤖 Google I/O Extended HCMC 2023',
-    descVi: 'Tại The Sentry, Quận 1 — giới thiệu Bard AI và mini AI Hackathon "Thử Thách Ứng Dụng AI Vào Cuộc Sống".',
-    descEn: 'At The Sentry, District 1 — introducing Bard AI and mini AI Hackathon "AI Application Challenge".',
-    image: null,
+    titleVi: 'Chạm tay vào Trí Tuệ Nhân Tạo (AI)',
+    titleEn: 'Touching Artificial Intelligence (AI)',
+    descVi: 'Google I/O Extended 2023 mang Bard AI và trào lưu Generative AI đến Việt Nam. Mini Hackathon cho thấy sự sáng tạo không giới hạn của người trẻ khi ứng dụng AI để giải quyết vấn đề cuộc sống.',
+    descEn: 'Google I/O Extended 2023 brought Bard AI and Generative AI to Vietnam. The Mini Hackathon showcased the boundless creativity of youth applying AI to solve real-life problems.',
     color: '#4285F4'
   },
   {
     year: 2023,
     date: '10/12/2023',
-    titleVi: '🎄 DevFest HCMC 2023',
-    titleEn: '🎄 DevFest HCMC 2023',
-    descVi: 'Firebase, Android Development, Web Animation, và Generative AI — hội tụ công nghệ cuối năm.',
-    descEn: 'Firebase, Android Development, Web Animation, and Generative AI — year-end tech convergence.',
-    image: null,
+    titleVi: '10 năm hành trình DevFest',
+    titleEn: '10 Years of DevFest Journey',
+    descVi: 'Một kỳ DevFest cuối năm bùng nổ, quy tụ những công nghệ hàng đầu. Nhìn lại 10 năm qua, từ những dòng code thô sơ đến những mô hình AI phức tạp, chúng ta đã trưởng thành vượt bậc cùng nhau.',
+    descEn: 'An explosive year-end DevFest gathering top-tier tech. Looking back over 10 years, from basic lines of code to complex AI models, we have grown tremendously together.',
     color: '#EA4335'
   },
   {
     year: 2024,
     date: '27/07/2024',
-    titleVi: '☁️ Google I/O Extended HCMC 2024',
-    titleEn: '☁️ Google I/O Extended HCMC 2024',
-    descVi: 'Tập trung vào Data, AI/ML, và DevOps trên Google Cloud — nâng tầm kỹ năng cloud cho developer.',
-    descEn: 'Focused on Data, AI/ML, and DevOps on Google Cloud — elevating cloud skills for developers.',
-    image: null,
+    titleVi: 'Đưa ý tưởng lên mây',
+    titleEn: 'Taking Ideas to the Cloud',
+    descVi: 'Tập trung mạnh mẽ vào Cloud, Data và DevOps. Cộng đồng không chỉ học cách lập trình, mà còn học cách vận hành và duy trì những hệ thống lớn mạnh mẽ, đáng tin cậy.',
+    descEn: 'Strong focus on Cloud, Data, and DevOps. The community learned not only to code but to operate and maintain robust, reliable large-scale systems.',
     color: '#FBBC04'
   },
   {
     year: 2024,
     date: '2024',
-    titleVi: '🧠 DevFest HCMC 2024 — "Responsible AI"',
-    titleEn: '🧠 DevFest HCMC 2024 — "Responsible AI"',
-    descVi: 'Chủ đề AI có trách nhiệm — xây dựng AI an toàn, minh bạch và công bằng cho tất cả.',
-    descEn: 'Theme: Responsible AI — building AI that is safe, transparent, and fair for everyone.',
-    image: null,
+    titleVi: 'Trách nhiệm với tương lai',
+    titleEn: 'Responsibility for the Future',
+    descVi: 'Chủ đề "Responsible AI" vang lên đầy mạnh mẽ. Chúng ta hiểu rằng công nghệ phải gắn liền với đạo đức. Sứ mệnh của một lập trình viên không chỉ là tạo ra phần mềm, mà là làm cho thế giới an toàn và công bằng hơn.',
+    descEn: 'The theme "Responsible AI" echoed powerfully. We understand that tech must align with ethics. A developer\'s mission is not just creating software, but making the world safer and fairer.',
     color: '#34A853'
   },
   {
     year: 2025,
     date: '04/2025',
-    titleVi: '🏗️ Build with AI HCMC 2025',
-    titleEn: '🏗️ Build with AI HCMC 2025',
-    descVi: 'Hands-on với Gemini, Vertex AI, Generative AI — từ lý thuyết đến thực hành xây dựng sản phẩm AI.',
-    descEn: 'Hands-on with Gemini, Vertex AI, Generative AI — from theory to building AI products.',
-    image: null,
+    titleVi: 'Cầm tay chỉ việc, kiến tạo AI',
+    titleEn: 'Hands-on Building with AI',
+    descVi: 'Build with AI HCMC 2025 biến những khái niệm trừu tượng thành sản phẩm cầm nắm được. Gemini và Vertex AI trở thành vũ khí sắc bén cho mọi nhà phát triển, từ sinh viên đến chuyên gia.',
+    descEn: 'Build with AI HCMC 2025 turned abstract concepts into tangible products. Gemini and Vertex AI became sharp tools for every developer, from students to experts.',
     color: '#4285F4'
   },
   {
     year: 2025,
     date: '19/07/2025',
-    titleVi: '🎤 Google I/O Extended HCMC 2025',
-    titleEn: '🎤 Google I/O Extended HCMC 2025',
-    descVi: 'Tại Ramana Hotel — Gemini, RAG, Multimodal Live API. Keynote "The Best of Google I/O 2025".',
-    descEn: 'At Ramana Hotel — Gemini, RAG, Multimodal Live API. Keynote "The Best of Google I/O 2025".',
-    image: null,
+    titleVi: 'Trải nghiệm đa phương thức',
+    titleEn: 'Multimodal Experiences',
+    descVi: 'I/O Extended tại Ramana Hotel đưa mọi người vào không gian của Multimodal AI. Không còn là những dòng văn bản vô tri, AI nay có thể nghe, nhìn và thấu hiểu thế giới cùng chúng ta.',
+    descEn: 'I/O Extended at Ramana Hotel brought everyone into the space of Multimodal AI. No longer just lifeless text, AI can now see, hear, and understand the world with us.',
     color: '#EA4335'
   },
   {
     year: 2025,
     date: '12/2025',
-    titleVi: '🎄 DevFest HCMC 2025',
-    titleEn: '🎄 DevFest HCMC 2025',
-    descVi: 'Xây dựng giải pháp An toàn, Bảo mật và Mở rộng với AI & Cloud.',
-    descEn: 'Building Safe, Secure, and Scalable Solutions with AI & Cloud.',
-    image: null,
+    titleVi: 'Bảo mật và bền vững',
+    titleEn: 'Security and Sustainability',
+    descVi: 'DevFest khép lại năm 2025 với bài học sâu sắc về xây dựng hệ thống an toàn và mở rộng. Khi công nghệ đi sâu vào mọi ngõ ngách, trách nhiệm bảo vệ người dùng được đặt lên hàng đầu.',
+    descEn: 'DevFest wrapped up 2025 with deep lessons on building secure and scalable systems. As tech permeates every corner, the responsibility to protect users becomes paramount.',
     color: '#FBBC04'
   },
   {
     year: 2026,
     date: '04/2026',
-    titleVi: '🏗️ Build with AI HCMC 2026',
-    titleEn: '🏗️ Build with AI HCMC 2026',
-    descVi: 'Ứng dụng AI thực tế, networking chuyên sâu với cộng đồng AI Việt Nam.',
-    descEn: 'Practical AI applications, deep networking with Vietnam AI community.',
-    image: null,
+    titleVi: 'Vươn xa cùng AI',
+    titleEn: 'Reaching Further with AI',
+    descVi: 'Networking chuyên sâu, AI ứng dụng vào từng doanh nghiệp nhỏ đến tập đoàn lớn. Cộng đồng GDG HCMC tiếp tục dẫn đầu làn sóng công nghệ, mang AI ra khỏi phòng lab để giải quyết nỗi đau của xã hội.',
+    descEn: 'Deep networking, AI applied from small businesses to large corporations. The GDG HCMC community continues leading the tech wave, bringing AI out of the lab to solve real-world problems.',
     color: '#34A853'
   },
   {
     year: 2026,
     date: '03/2026',
-    titleVi: '👩‍💻 WTM IWD HCMC 2026 — "Break The Pattern"',
-    titleEn: '👩‍💻 WTM IWD HCMC 2026 — "Break The Pattern"',
-    descVi: 'Ngày Quốc tế Phụ nữ trong Tech — phá vỡ khuôn mẫu, truyền cảm hứng cho phụ nữ trong công nghệ.',
-    descEn: 'International Women\'s Day in Tech — breaking the pattern, inspiring women in technology.',
-    image: null,
+    titleVi: 'Phá vỡ mọi khuôn mẫu',
+    titleEn: 'Breaking the Pattern',
+    descVi: 'Ngày Quốc tế Phụ nữ trong Tech 2026. Những câu chuyện truyền cảm hứng từ các nữ kỹ sư phần mềm, những người dám "Break The Pattern", vượt qua định kiến để khẳng định bản thân trong ngành công nghệ.',
+    descEn: 'International Women\'s Day in Tech 2026. Inspiring stories from female software engineers who dared to "Break The Pattern", overcoming stereotypes to assert themselves in tech.',
     color: '#EA4335'
   },
   {
     year: 2026,
     date: '16/08/2026',
-    titleVi: '🎂 Sinh nhật 13 năm GDG HCMC & Google I/O Extended 2026',
-    titleEn: '🎂 GDG HCMC 13th Birthday & Google I/O Extended 2026',
-    descVi: '13 năm — một hành trình đáng nhớ! Kỷ niệm tại Ramana Hotel Saigon cùng AI Riser Vietnam Hands-On Workshop.',
-    descEn: '13 years — an unforgettable journey! Celebrating at Ramana Hotel Saigon with AI Riser Vietnam Hands-On Workshop.',
-    image: null,
-    isBirthday: true,
-    color: '#4285F4'
+    titleVi: 'Hành trình 13 năm tự hào',
+    titleEn: '13 Years of Proud Journey',
+    descVi: 'Sinh nhật 13 năm GDG HCMC. Nhìn lại cả một thập kỷ từ những nhóm nhỏ lưa thưa đến cộng đồng ngàn người. 13 năm là mồ hôi, là nụ cười, là thanh xuân của bao thế hệ lập trình viên. Hành trình vĩ đại này sẽ còn tiếp tục!',
+    descEn: 'GDG HCMC 13th Birthday. Looking back over a decade from scattered small groups to a thousand-strong community. 13 years of sweat, smiles, and the youth of generations of developers. This great journey continues!',
+    color: '#4285F4',
+    isBirthday: true
   }
 ];
 
-// Google brand colors
 export const GOOGLE_COLORS = {
   blue: '#4285F4',
   red: '#EA4335',
@@ -254,3 +228,12 @@ export const GOOGLE_COLORS = {
 };
 
 export const GOOGLE_COLORS_ARRAY = ['#4285F4', '#EA4335', '#FBBC04', '#34A853'];
+
+// Giả lập danh sách ảnh GDG cho cơn mưa ảnh. (Sau này người dùng có thể tự thêm ảnh vào Image/ và cập nhật mảng này)
+export const PHOTO_URLS = [
+  'Image/2013_(1).jpg',
+  'Image/04-10-2013_EntrepreneurWeek.jpg',
+  'Image/09-11-2013_GDays.jpg',
+  'Image/18-10-2013_YoutubeXGDG.jpg',
+  'Image/27-10-2013_GoogleCloudAdventure.jpg'
+];

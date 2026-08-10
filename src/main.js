@@ -1,7 +1,7 @@
 // main.js — GDG HCMC 13th Birthday 3D Timeline
 // Entry point: Scene setup, camera, scroll sync, HTML generation
 import * as THREE from 'three';
-import { EVENTS, GOOGLE_COLORS_ARRAY } from './events.js';
+import { EVENTS, GOOGLE_COLORS_ARRAY, PHOTO_URLS } from './events.js';
 import { createTerrain, createEventMarkers } from './terrain.js';
 import { createParticles, createStars, updateParticles } from './particles.js';
 
@@ -19,8 +19,7 @@ const CAM_HEIGHT = 6;
 // ============================================
 const canvas = document.getElementById('scene-canvas');
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x070714);
-scene.fog = new THREE.FogExp2(0x070714, 0.004);
+scene.background = null;
 
 const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 800);
 camera.position.set(0, CAM_HEIGHT, CAM_START_Z);
@@ -28,8 +27,10 @@ camera.position.set(0, CAM_HEIGHT, CAM_START_Z);
 const renderer = new THREE.WebGLRenderer({
   canvas,
   antialias: true,
+  alpha: true,
   powerPreference: 'high-performance',
 });
+renderer.setClearColor(0x000000, 0);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -106,14 +107,6 @@ function generateTimeline() {
     const isLeft = index % 2 === 0;
     const isBirthday = event.isBirthday;
 
-    let imageHTML = '';
-    if (event.image) {
-      imageHTML = `
-        <div class="event-image-wrapper">
-          <img src="${event.image}" alt="${event.titleEn}" loading="lazy">
-        </div>`;
-    }
-
     section.innerHTML = `
       <div class="event-inner">
         <div class="event-year-side">
@@ -131,7 +124,6 @@ function generateTimeline() {
               <span class="lang-vi">${event.descVi}</span>
               <span class="lang-en">${event.descEn}</span>
             </p>
-            ${imageHTML}
           </div>
         </div>
       </div>
@@ -150,6 +142,31 @@ let currentYear = 2013;
 const yearIndicator = document.getElementById('year-indicator');
 const yearText = document.getElementById('year-text');
 const progressFill = document.getElementById('progress-fill');
+
+const bgLayer1 = document.getElementById('bg-layer-1');
+const bgLayer2 = document.getElementById('bg-layer-2');
+let activeBgLayer = 1;
+
+function updateBackground(year) {
+  if (!bgLayer1 || !bgLayer2) return;
+  const photoIndex = (year - 2013) % PHOTO_URLS.length;
+  const bgUrl = `url('${PHOTO_URLS[Math.max(0, photoIndex)]}')`;
+
+  if (activeBgLayer === 1) {
+    bgLayer2.style.backgroundImage = bgUrl;
+    bgLayer2.classList.add('active');
+    bgLayer1.classList.remove('active');
+    activeBgLayer = 2;
+  } else {
+    bgLayer1.style.backgroundImage = bgUrl;
+    bgLayer1.classList.add('active');
+    bgLayer2.classList.remove('active');
+    activeBgLayer = 1;
+  }
+}
+
+// Initial background
+updateBackground(2013);
 
 function onScroll() {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -302,11 +319,12 @@ function animate() {
   camera.position.set(pos.x, pos.y, pos.z);
   camera.lookAt(lookAt.x, lookAt.y, lookAt.z);
 
-  // Update year indicator
+  // Update year indicator & Background
   const eventIndex = Math.floor(currentScrollProgress * EVENTS.length);
   const event = EVENTS[Math.min(eventIndex, EVENTS.length - 1)];
   if (event && event.year !== currentYear) {
     currentYear = event.year;
+    updateBackground(currentYear);
     if (yearText) {
       yearText.textContent = currentYear;
       yearText.style.color = event.color;
