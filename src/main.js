@@ -355,15 +355,6 @@ function animate() {
     stars.rotation.y = elapsed * 0.005;
   }
 
-  // Pulse event markers
-  if (markers) {
-    markers.children.forEach((child, i) => {
-      if (child.isMesh && child.geometry.type === 'SphereGeometry') {
-        const scale = 1 + Math.sin(elapsed * 2 + i * 0.5) * 0.2;
-        child.scale.setScalar(scale);
-      }
-    });
-  }
 
   renderer.render(scene, camera);
 }
