@@ -59,14 +59,15 @@ scene.add(terrain);
 // ============================================
 // Event Markers
 // ============================================
-const markers = createEventMarkers(EVENTS, TOTAL_LENGTH);
-markers.position.set(0, 0, 0);
-scene.add(markers);
+// Removed markers based on user feedback
+// const markers = createEventMarkers(EVENTS, TOTAL_LENGTH);
+// markers.position.set(0, 0, 0);
+// scene.add(markers);
 
 // ============================================
 // Particles & Stars
 // ============================================
-const particles = createParticles(TOTAL_LENGTH, 500);
+const particles = createParticles(TOTAL_LENGTH, 70); // Reduced count to prevent network overload
 scene.add(particles);
 
 const stars = createStars(1500);

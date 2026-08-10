@@ -3,18 +3,21 @@ import * as THREE from 'three';
 import { GOOGLE_COLORS_ARRAY, PHOTO_URLS } from './events.js';
 
 // Floating Photo Sprites along the path
-export function createParticles(totalLength, count = 100) {
+export function createParticles(totalLength, count = 50) {
   const group = new THREE.Group();
   
   const textureLoader = new THREE.TextureLoader();
-  const textures = PHOTO_URLS.map(url => textureLoader.load(url));
+  
+  // Pick a random subset of URLs to prevent loading 800+ textures at startup
+  const shuffled = [...PHOTO_URLS].sort(() => 0.5 - Math.random());
+  const selectedUrls = shuffled.slice(0, count);
+  const textures = selectedUrls.map(url => textureLoader.load(url));
 
   const initialPositions = [];
 
-  // We use less count than points, because photos are bigger
   for (let i = 0; i < count; i++) {
-    // Randomly pick a texture
-    const tex = textures[Math.floor(Math.random() * textures.length)];
+    // Pick the texture sequentially from our subset
+    const tex = textures[i % textures.length];
     
     const material = new THREE.SpriteMaterial({
       map: tex,

@@ -65,7 +65,7 @@ body.lang-en .lang-vi { display: none !important; }
   background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
-  filter: brightness(0.25) blur(4px); /* Darken & blur heavily so text and 3D terrain pop */
+  filter: brightness(0.4) blur(3px); /* Brightened so photos are more visible */
 }
 
 .bg-layer.active {
