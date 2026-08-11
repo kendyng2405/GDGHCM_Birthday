@@ -511,6 +511,34 @@ body.lang-en .lang-vi { display: none !important; }
   display: inline-block;
 }
 
+/* --- GDG Logo --- */
+#gdg-logo {
+  position: fixed;
+  top: 30px;
+  left: 40px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  opacity: 0.9;
+  letter-spacing: -0.02em;
+  pointer-events: none;
+}
+
+#gdg-logo .logo-icon {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--g-blue);
+  background: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
 /* --- Finale Section --- */
 #finale {
   min-height: 100vh;
