@@ -108,7 +108,6 @@ function generateTimeline() {
         </div>
         <div class="event-card-side">
           <div class="event-card ${isBirthday ? 'birthday-card' : ''}" style="--accent: ${event.color}">
-            <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${event.color};border-radius:20px 20px 0 0;"></div>
             <div class="event-date" style="color: ${event.color}">${event.date}</div>
             <h3 class="event-title">
               <span class="lang-vi">${event.titleVi}</span>

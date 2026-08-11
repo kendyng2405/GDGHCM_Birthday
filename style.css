@@ -439,6 +439,7 @@ body.lang-en .lang-vi { display: none !important; }
   left: 0;
   right: 0;
   height: 3px;
+  background: var(--accent);
   border-radius: 20px 20px 0 0;
 }
 
@@ -500,6 +501,14 @@ body.lang-en .lang-vi { display: none !important; }
 .event-card.birthday-card::before {
   height: 4px;
   background: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green)) !important;
+}
+
+.event-card.birthday-card .event-title {
+  background: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: inline-block;
 }
 
 /* --- Finale Section --- */
