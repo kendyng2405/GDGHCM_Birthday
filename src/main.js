@@ -26,28 +26,20 @@ camera.position.set(0, CAM_HEIGHT, CAM_START_Z);
 
 const renderer = new THREE.WebGLRenderer({
   canvas,
-  antialias: true,
+  antialias: false, // Disabled for massive performance boost
   alpha: true,
   powerPreference: 'high-performance',
 });
 renderer.setClearColor(0x000000, 0);
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setPixelRatio(1); // Lock pixel ratio to 1 to fix Retina display lag
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.2;
 
 // ============================================
 // Lighting
 // ============================================
-const ambientLight = new THREE.AmbientLight(0x40407a, 2.5); // Brighter ambient
-scene.add(ambientLight);
-
-const hemiLight = new THREE.HemisphereLight(0x4285F4, 0x151530, 2.0); // Brighter hemisphere
-scene.add(hemiLight);
-
-const moonLight = new THREE.DirectionalLight(0xffffff, 3.0); // Brighter directional light
-moonLight.position.set(50, 100, 50);
-scene.add(moonLight);
+// Removed all lights because PointsMaterial and basic Sprites do not require lighting
 
 // ============================================
 // Terrain
@@ -68,7 +60,7 @@ scene.add(moonLight);
 // ============================================
 // Particles & Stars
 // ============================================
-const particles = createParticles(TOTAL_LENGTH, 70); // Reduced count to prevent network overload
+const particles = createParticles(TOTAL_LENGTH); // Auto loads all photos without lag
 scene.add(particles);
 
 const stars = createStars(1500);

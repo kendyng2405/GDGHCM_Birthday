@@ -3,52 +3,69 @@ import * as THREE from 'three';
 import { GOOGLE_COLORS_ARRAY, PHOTO_URLS } from './events.js';
 
 // Floating Photo Sprites along the path
-export function createParticles(totalLength, count = 25) {
+export function createParticles(totalLength) {
   const group = new THREE.Group();
   
-  const textureLoader = new THREE.TextureLoader();
-  
-  // Pick a random subset of URLs to prevent loading 800+ textures at startup
+  // Use all available photos!
+  const count = PHOTO_URLS.length;
   const shuffled = [...PHOTO_URLS].sort(() => 0.5 - Math.random());
-  const selectedUrls = shuffled.slice(0, count);
-  const textures = selectedUrls.map(url => {
-    const tex = textureLoader.load(url);
-    tex.colorSpace = THREE.SRGBColorSpace;
-    return tex;
-  });
-
+  
   const initialPositions = [];
 
   for (let i = 0; i < count; i++) {
-    // Pick the texture sequentially from our subset
-    const tex = textures[i % textures.length];
+    const url = shuffled[i];
     
-    const material = new THREE.SpriteMaterial({
-      map: tex,
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.85
-    });
-
-    const sprite = new THREE.Sprite(material);
-
-    // Distribute evenly along the Z axis to prevent clumping/overlapping
+    // Distribute evenly along the Z axis
     const zSpacing = totalLength / count;
     const z = -80 - (i * zSpacing) - (Math.random() * zSpacing * 0.5);
-
-    // Increase X and Y spread to further separate them visually
-    const x = (Math.random() - 0.5) * 120; // Spread horizontally (-60 to 60)
-    const y = (Math.random() - 0.5) * 60;  // Spread vertically (-30 to 30)
-
-    sprite.position.set(x, y, z);
     
-    // Scale sprite to a reasonable photo size (balanced based on feedback)
-    const scaleFactor = Math.random() * 10 + 20; // Range: 20 to 30
-    sprite.scale.set(scaleFactor * 1.5, scaleFactor, 1);
-
-    group.add(sprite);
+    // MASSIVE SPREAD to prevent 150 images from overlapping into a wall
+    const x = (Math.random() - 0.5) * 300; // Spread horizontally (-150 to 150)
+    const y = (Math.random() - 0.5) * 160; // Spread vertically (-80 to 80)
 
     initialPositions.push({ x, y, z, phase: Math.random() * Math.PI * 2 });
+
+    // Load and downscale asynchronously to save VRAM
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.src = url;
+    img.onload = () => {
+      const MAX_SIZE = 256;
+      let w = img.width;
+      let h = img.height;
+      if (w > MAX_SIZE || h > MAX_SIZE) {
+        const ratio = Math.min(MAX_SIZE / w, MAX_SIZE / h);
+        w = Math.round(w * ratio);
+        h = Math.round(h * ratio);
+      }
+      
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      
+      const material = new THREE.SpriteMaterial({
+        map: tex,
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0 // Will fade in during update
+      });
+      
+      const sprite = new THREE.Sprite(material);
+      sprite.position.set(x, y, z);
+      
+      // SMALL SIZE so they don't block the screen
+      const scaleFactor = Math.random() * 5 + 7; // Range: 7 to 12
+      const aspectRatio = w / h || 1.5;
+      sprite.scale.set(scaleFactor * aspectRatio, scaleFactor, 1);
+      
+      sprite.userData.index = i;
+      group.add(sprite);
+    };
   }
 
   group.userData.initialPositions = initialPositions;
@@ -117,8 +134,10 @@ export function updateParticles(particleGroup, time, scrollProgress = 1, camera 
   if (targetOpacity > 0) {
     const camZ = camera ? camera.position.z : 0;
     
-    particleGroup.children.forEach((sprite, i) => {
-      const data = initial[i];
+    particleGroup.children.forEach((sprite) => {
+      const idx = sprite.userData.index;
+      if (idx === undefined) return;
+      const data = initial[idx];
       
       // Frustum culling: Only render images that are near the camera
       if (camera) {
