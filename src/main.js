@@ -316,10 +316,12 @@ const clock = new THREE.Clock();
 function animate() {
   requestAnimationFrame(animate);
 
+  const dt = Math.min(clock.getDelta(), 0.1); // Clamp to 0.1s max to prevent huge jumps
   const elapsed = clock.getElapsedTime();
 
-  // Smooth scroll interpolation (Lerp)
-  currentScrollProgress += (targetScrollProgress - currentScrollProgress) * 0.08;
+  // Frame-rate independent smooth scroll interpolation (Lerp)
+  const decay = 8.0;
+  currentScrollProgress += (targetScrollProgress - currentScrollProgress) * (1 - Math.exp(-decay * dt));
 
   // Update camera based on smoothed progress
   const pos = getCameraPosition(currentScrollProgress);
