@@ -3,6 +3,9 @@ import * as THREE from 'three';
 import { GOOGLE_COLORS_ARRAY, PHOTO_URLS } from './events.js';
 
 // Floating Photo Sprites along the path
+const sharedCanvas = document.createElement('canvas');
+const sharedCtx = sharedCanvas.getContext('2d', { willReadFrequently: true });
+
 export function createParticles(totalLength) {
   const group = new THREE.Group();
   
@@ -39,14 +42,15 @@ export function createParticles(totalLength) {
         h = Math.round(h * ratio);
       }
       
-      const canvas = document.createElement('canvas');
-      canvas.width = w;
-      canvas.height = h;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, w, h);
+      sharedCanvas.width = w;
+      sharedCanvas.height = h;
+      sharedCtx.clearRect(0, 0, w, h);
+      sharedCtx.drawImage(img, 0, 0, w, h);
       
-      const tex = new THREE.CanvasTexture(canvas);
+      const imageData = sharedCtx.getImageData(0, 0, w, h);
+      const tex = new THREE.DataTexture(imageData.data, w, h, THREE.RGBAFormat);
       tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
       
       const material = new THREE.SpriteMaterial({
         map: tex,
