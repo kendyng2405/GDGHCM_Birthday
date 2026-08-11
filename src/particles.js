@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { GOOGLE_COLORS_ARRAY, PHOTO_URLS } from './events.js';
 
 // Floating Photo Sprites along the path
-export function createParticles(totalLength, count = 50) {
+export function createParticles(totalLength, count = 25) {
   const group = new THREE.Group();
   
   const textureLoader = new THREE.TextureLoader();
@@ -100,7 +100,7 @@ export function createStars(count = 2000) {
 }
 
 // Animate floating photos
-export function updateParticles(particleGroup, time, scrollProgress = 1) {
+export function updateParticles(particleGroup, time, scrollProgress = 1, camera = null) {
   const initial = particleGroup.userData.initialPositions;
   if (!initial) return;
 
@@ -115,8 +115,21 @@ export function updateParticles(particleGroup, time, scrollProgress = 1) {
   particleGroup.visible = targetOpacity > 0;
 
   if (targetOpacity > 0) {
+    const camZ = camera ? camera.position.z : 0;
+    
     particleGroup.children.forEach((sprite, i) => {
       const data = initial[i];
+      
+      // Frustum culling: Only render images that are near the camera
+      if (camera) {
+        if (data.z > camZ + 30 || data.z < camZ - 150) {
+          sprite.visible = false;
+          return; // Skip math updates
+        } else {
+          sprite.visible = true;
+        }
+      }
+
       // Gentle floating effect for photos
       sprite.position.x = data.x + Math.sin(time * 0.2 + data.phase) * 3;
       sprite.position.y = data.y + Math.sin(time * 0.3 + data.phase * 2) * 2;

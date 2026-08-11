@@ -163,24 +163,32 @@ function resetBgIdleTimer() {
 function updateBackground(year) {
   if (!bgLayer1 || !bgLayer2) return;
   
-  let bgUrl = '';
   // Get photos for current year, fallback to all photos if empty
   let pool = YEAR_PHOTOS[year] && YEAR_PHOTOS[year].length > 0 ? YEAR_PHOTOS[year] : PHOTO_URLS;
   if (pool.length > 0) {
     const photoIndex = Math.floor(Math.random() * pool.length);
-    bgUrl = `url('${pool[photoIndex]}')`;
+    const rawUrl = pool[photoIndex];
+    
+    // Async decode to prevent scroll lag
+    const img = new Image();
+    img.src = rawUrl;
+    img.decode()
+      .then(() => applyBackground(`url('${rawUrl}')`))
+      .catch(() => applyBackground(`url('${rawUrl}')`)); // fallback
   }
 
-  if (activeBgLayer === 1) {
-    bgLayer2.style.backgroundImage = bgUrl;
-    bgLayer2.classList.add('active');
-    bgLayer1.classList.remove('active');
-    activeBgLayer = 2;
-  } else {
-    bgLayer1.style.backgroundImage = bgUrl;
-    bgLayer1.classList.add('active');
-    bgLayer2.classList.remove('active');
-    activeBgLayer = 1;
+  function applyBackground(bgUrl) {
+    if (activeBgLayer === 1) {
+      bgLayer2.style.backgroundImage = bgUrl;
+      bgLayer2.classList.add('active');
+      bgLayer1.classList.remove('active');
+      activeBgLayer = 2;
+    } else {
+      bgLayer1.style.backgroundImage = bgUrl;
+      bgLayer1.classList.add('active');
+      bgLayer2.classList.remove('active');
+      activeBgLayer = 1;
+    }
   }
 }
 
@@ -363,11 +371,11 @@ function animate() {
   }
 
   // Animate particles (pass scroll progress to fade in)
-  updateParticles(particles, elapsed, currentScrollProgress);
+  updateParticles(particles, elapsed, currentScrollProgress, camera);
 
   // Slowly rotate stars
   if (stars) {
-    stars.rotation.y = elapsed * 0.005;
+    stars.rotation.y = elapsed * 0.002;
   }
 
 
