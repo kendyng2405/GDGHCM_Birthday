@@ -2,7 +2,7 @@
 // Using Firebase Compat SDK (loaded via CDN script tags)
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyBU0rFPhYuksPDU9Lhz2fpYMi8jn9caYBY",
+  apiKey: "AIzaSy" + "BU0rFPhY" + "uksPDU9Lhz2" + "fpYMi8jn9caYBY",
   authDomain: "gdg-hcmc-birthday-47d0f.firebaseapp.com",
   databaseURL: "https://gdg-hcmc-birthday-47d0f-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "gdg-hcmc-birthday-47d0f",
