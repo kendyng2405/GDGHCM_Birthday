@@ -34,7 +34,7 @@ export function createParticles(totalLength) {
       img.crossOrigin = 'anonymous';
       img.src = url;
       img.onload = () => {
-        const MAX_SIZE = 256;
+        const MAX_SIZE = 512; // Increased for better quality without crashing
         let w = img.width;
         let h = img.height;
         if (w > MAX_SIZE || h > MAX_SIZE) {
@@ -46,11 +46,23 @@ export function createParticles(totalLength) {
         sharedCanvas.width = w;
         sharedCanvas.height = h;
         sharedCtx.clearRect(0, 0, w, h);
+        
+        // Flip vertically before drawing to fix upside-down DataTexture
+        sharedCtx.save();
+        sharedCtx.translate(0, h);
+        sharedCtx.scale(1, -1);
         sharedCtx.drawImage(img, 0, 0, w, h);
+        sharedCtx.restore();
         
         const imageData = sharedCtx.getImageData(0, 0, w, h);
         const tex = new THREE.DataTexture(imageData.data, w, h, THREE.RGBAFormat);
         tex.colorSpace = THREE.SRGBColorSpace;
+        
+        // Fix blocky/pixelated appearance
+        tex.magFilter = THREE.LinearFilter;
+        tex.minFilter = THREE.LinearFilter; // Use LinearFilter instead of Mipmap to ensure compatibility with non-power-of-2 dimensions
+        tex.generateMipmaps = false; 
+        
         tex.needsUpdate = true;
         
         const material = new THREE.SpriteMaterial({
