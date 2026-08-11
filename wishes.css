@@ -1,0 +1,346 @@
+/* ============================================
+   Wishes Pages — Styles
+   ============================================ */
+
+/* --- Wishes Form Section (on index.html) --- */
+.wishes-section {
+  margin-top: 50px;
+  padding: 40px;
+  background: rgba(20, 20, 50, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  text-align: center;
+}
+
+.wishes-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.wishes-section-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+/* --- Wish Form --- */
+.wish-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wish-form-row input,
+.wish-form-row textarea {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  resize: vertical;
+}
+
+.wish-form-row input::placeholder,
+.wish-form-row textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.wish-form-row input:focus,
+.wish-form-row textarea:focus {
+  border-color: var(--g-blue);
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15);
+}
+
+.wish-submit-btn {
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.wish-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --- Wish Feedback Messages --- */
+.wish-feedback {
+  max-width: 500px;
+  margin: 16px auto 0;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+  transition: opacity 0.5s ease;
+}
+
+.wish-success {
+  background: rgba(52, 168, 83, 0.15);
+  color: var(--g-green);
+  border: 1px solid rgba(52, 168, 83, 0.3);
+}
+
+.wish-error {
+  background: rgba(234, 67, 53, 0.15);
+  color: var(--g-red);
+  border: 1px solid rgba(234, 67, 53, 0.3);
+}
+
+/* --- View Wishes Link --- */
+.view-wishes-link {
+  display: inline-block;
+  margin-top: 24px;
+  color: var(--g-blue);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+}
+
+.view-wishes-link:hover {
+  color: var(--g-yellow);
+  transform: translateX(4px);
+}
+
+/* ============================================
+   Wishes Display Page (wishes.html)
+   ============================================ */
+
+.wishes-page-body {
+  background: linear-gradient(135deg, #0a0a1a 0%, #0d1b3e 50%, #0a0a1a 100%);
+  min-height: 100vh;
+  padding: 0 20px 40px;
+}
+
+/* Back Link */
+.back-link {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+}
+
+/* Header */
+.wishes-header {
+  text-align: center;
+  padding: 100px 20px 40px;
+  animation: heroFadeIn 1s ease-out 0.3s both;
+}
+
+.wishes-header-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 20px;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.wishes-header-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.wishes-header-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.wishes-header-subtitle span span {
+  font-weight: 700;
+  color: var(--g-blue);
+  font-size: 1.3rem;
+}
+
+/* Empty State */
+.wishes-empty {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-muted);
+}
+
+.wishes-empty-emoji {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+/* Wishes Grid */
+.wishes-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  columns: 3;
+  column-gap: 20px;
+  padding: 20px 0;
+}
+
+@media (max-width: 900px) {
+  .wishes-grid { columns: 2; }
+}
+
+@media (max-width: 560px) {
+  .wishes-grid { columns: 1; }
+}
+
+/* Individual Wish Card */
+.wish-card {
+  break-inside: avoid;
+  margin-bottom: 20px;
+  background: rgba(20, 20, 50, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.wish-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.wish-card-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent, var(--g-blue));
+  border-radius: 16px 16px 0 0;
+}
+
+.wish-card-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.wish-card-body {}
+
+.wish-card-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.wish-card-message {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  word-wrap: break-word;
+}
+
+.wish-card-time {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+/* Footer */
+.wishes-footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.wishes-footer a {
+  color: var(--g-blue);
+  text-decoration: none;
+  margin-top: 8px;
+  display: inline-block;
+  transition: opacity 0.3s;
+}
+
+.wishes-footer a:hover {
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .wishes-header {
+    padding: 80px 16px 30px;
+  }
+
+  .wish-card {
+    padding: 20px;
+  }
+
+  .back-link {
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+
+  .wishes-section {
+    padding: 28px 20px;
+    margin-top: 30px;
+  }
+}

@@ -358,24 +358,13 @@ body.lang-en .lang-vi { display: none !important; }
   position: relative;
 }
 
-/* Timeline dot */
+/* Timeline dot — REMOVED per user feedback */
 .event-section::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  box-shadow: 0 0 20px currentColor;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: none;
 }
 
 .event-section.in-view::before {
-  transform: translate(-50%, -50%) scale(1.4);
-  box-shadow: 0 0 30px currentColor, 0 0 60px currentColor;
+  display: none;
 }
 
 /* Event card layout */
@@ -717,9 +706,7 @@ body.lang-en .lang-vi { display: none !important; }
     left: 20px;
   }
 
-  .event-section::before {
-    left: 20px;
-  }
+
 
   .event-section {
     min-height: auto;

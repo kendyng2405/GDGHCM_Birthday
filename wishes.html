@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lời chúc sinh nhật — GDG HCMC 13 Năm</title>
+  <meta name="description" content="Tất cả lời chúc sinh nhật gửi tới Google Developer Group Ho Chi Minh City nhân dịp tròn 13 tuổi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="wishes.css">
+
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+</head>
+<body class="lang-vi wishes-page-body">
+
+  <!-- Back to main page -->
+  <a href="index.html" class="back-link" id="back-link">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+      <path d="M19 12H5M5 12l7 7M5 12l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="lang-vi">Về trang chính</span>
+    <span class="lang-en">Back to main</span>
+  </a>
+
+  <!-- Page Header -->
+  <header class="wishes-header">
+    <div class="wishes-header-badge">GDG HCMC · 13th Birthday</div>
+    <h1 class="wishes-header-title">
+      <span class="lang-vi">💌 Lời chúc từ cộng đồng</span>
+      <span class="lang-en">💌 Wishes from the Community</span>
+    </h1>
+    <p class="wishes-header-subtitle">
+      <span class="lang-vi">
+        <span id="wishes-count">0</span> lời chúc đã được gửi tới GDG HCMC
+      </span>
+      <span class="lang-en">
+        <span id="wishes-count-en" class="wishes-count-mirror">0</span> wishes sent to GDG HCMC
+      </span>
+    </p>
+  </header>
+
+  <!-- Empty State -->
+  <div id="wishes-empty" class="wishes-empty" style="display:none;">
+    <div class="wishes-empty-emoji">📝</div>
+    <p class="lang-vi">Chưa có lời chúc nào. Hãy là người đầu tiên!</p>
+    <p class="lang-en">No wishes yet. Be the first!</p>
+    <a href="index.html#wish-form" class="cta-button" style="margin-top: 20px;">
+      <span class="lang-vi">💌 Gửi lời chúc</span>
+      <span class="lang-en">💌 Send a wish</span>
+    </a>
+  </div>
+
+  <!-- Wishes Grid -->
+  <div id="wishes-grid" class="wishes-grid"></div>
+
+  <!-- Footer -->
+  <footer class="wishes-footer">
+    <p>Made with 💙 for GDG HCMC Community</p>
+    <a href="index.html" class="lang-vi">← Về trang chính</a>
+    <a href="index.html" class="lang-en">← Back to main page</a>
+  </footer>
+
+  <script type="module">
+    import { initWishesPage } from './src/wishes-page.js';
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(initWishesPage, 300);
+    });
+
+    // Sync count for both lang spans
+    const observer = new MutationObserver(() => {
+      const countEl = document.getElementById('wishes-count');
+      const mirror = document.getElementById('wishes-count-en');
+      if (countEl && mirror) mirror.textContent = countEl.textContent;
+    });
+    const target = document.getElementById('wishes-count');
+    if (target) observer.observe(target, { childList: true, characterData: true, subtree: true });
+  </script>
+</body>
+</html>
