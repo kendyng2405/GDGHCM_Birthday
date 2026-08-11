@@ -10,7 +10,7 @@
   --g-yellow: #FBBC04;
   --g-green: #34A853;
   --bg-dark: #0a0a1a;
-  --bg-card: rgba(20, 20, 40, 0.65);
+  --bg-card: rgba(20, 20, 40, 0.9);
   --bg-glass: rgba(255, 255, 255, 0.06);
   --border-glass: rgba(255, 255, 255, 0.1);
   --text-primary: #ffffff;
@@ -26,7 +26,6 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -412,8 +411,6 @@ body.lang-en .lang-vi { display: none !important; }
 /* Glassmorphism Event Card */
 .event-card {
   background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-glass);
   border-radius: 20px;
   padding: 32px;

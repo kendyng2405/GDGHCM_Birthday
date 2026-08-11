@@ -157,7 +157,7 @@ function resetBgIdleTimer() {
       updateBackground(currentYear);
     }
     resetBgIdleTimer();
-  }, 20000); // Auto change background every 20s if idle
+  }, 10000); // Auto change background every 10s if idle
 }
 
 function updateBackground(year) {
