@@ -32,12 +32,13 @@ export function createParticles(totalLength, count = 50) {
 
     const sprite = new THREE.Sprite(material);
 
-    // Randomize positions evenly across the screen (removed mountains allows lower placement)
-    const x = (Math.random() - 0.5) * 80; // Spread horizontally
-    const y = (Math.random() - 0.5) * 40; // Spread vertically from -20 to +20
-    
-    // Start spawning deeper into the timeline (-80) so they don't block the intro text
-    const z = -80 - Math.random() * totalLength; // Spread along the path
+    // Distribute evenly along the Z axis to prevent clumping/overlapping
+    const zSpacing = totalLength / count;
+    const z = -80 - (i * zSpacing) - (Math.random() * zSpacing * 0.5);
+
+    // Increase X and Y spread to further separate them visually
+    const x = (Math.random() - 0.5) * 120; // Spread horizontally (-60 to 60)
+    const y = (Math.random() - 0.5) * 60;  // Spread vertically (-30 to 30)
 
     sprite.position.set(x, y, z);
     
