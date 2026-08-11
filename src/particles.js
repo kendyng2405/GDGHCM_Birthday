@@ -41,8 +41,8 @@ export function createParticles(totalLength, count = 50) {
 
     sprite.position.set(x, y, z);
     
-    // Scale sprite to a reasonable photo size, making them larger as requested
-    const scaleFactor = Math.random() * 5 + 6; // Range: 6 to 11
+    // Scale sprite to a reasonable photo size, making them much larger as requested
+    const scaleFactor = Math.random() * 10 + 15; // Range: 15 to 25 (significantly bigger)
     sprite.scale.set(scaleFactor * 1.5, scaleFactor, 1);
 
     group.add(sprite);
