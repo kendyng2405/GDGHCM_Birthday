@@ -103,8 +103,12 @@ export function updateParticles(particleGroup, time, scrollProgress = 1) {
   const initial = particleGroup.userData.initialPositions;
   if (!initial) return;
 
-  // Fade opacity from 0 to 0.85 when scrollProgress goes from 0.01 to 0.05
-  const targetOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.01) * 25)) * 0.85;
+  // Fade in at the beginning (0.01 to 0.05)
+  const fadeIn = Math.max(0, Math.min(1, (scrollProgress - 0.01) * 25));
+  // Fade out at the end (0.90 to 0.94) so they don't overlap the final birthday message
+  const fadeOut = Math.max(0, Math.min(1, (0.94 - scrollProgress) * 25));
+  
+  const targetOpacity = fadeIn * fadeOut * 0.85;
 
   // Completely hide them from the DOM rendering if opacity is 0 to save performance
   particleGroup.visible = targetOpacity > 0;
