@@ -65,7 +65,9 @@ body.lang-en .lang-vi { display: none !important; }
   background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
-  filter: brightness(0.4) blur(3px); /* Brightened so photos are more visible */
+  filter: brightness(0.4); /* Removed blur(3px) for massive scroll performance gain */
+  will-change: opacity;
+  transform: translateZ(0);
 }
 
 .bg-layer.active {
@@ -417,8 +419,9 @@ body.lang-en .lang-vi { display: none !important; }
   padding: 32px;
   position: relative;
   overflow: hidden;
-  transform: translateY(40px);
+  transform: translateY(40px) translateZ(0);
   opacity: 0;
+  will-change: transform, opacity;
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
               opacity 0.7s ease,
               border-color 0.3s ease;

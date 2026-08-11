@@ -65,7 +65,7 @@ export function setupWishForm() {
       showError('Có lỗi xảy ra, vui lòng thử lại!');
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = '💌 Gửi lời chúc';
+      submitBtn.textContent = 'Gửi lời chúc';
     }
   });
 
