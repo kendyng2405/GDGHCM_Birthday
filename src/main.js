@@ -148,6 +148,17 @@ const progressFill = document.getElementById('progress-fill');
 const bgLayer1 = document.getElementById('bg-layer-1');
 const bgLayer2 = document.getElementById('bg-layer-2');
 let activeBgLayer = 1;
+let bgIdleTimer = null;
+
+function resetBgIdleTimer() {
+  if (bgIdleTimer) clearTimeout(bgIdleTimer);
+  bgIdleTimer = setTimeout(() => {
+    if (currentYear) {
+      updateBackground(currentYear);
+    }
+    resetBgIdleTimer();
+  }, 20000); // Auto change background every 20s if idle
+}
 
 function updateBackground(year) {
   if (!bgLayer1 || !bgLayer2) return;
@@ -179,6 +190,7 @@ updateBackground(2013);
 function onScroll() {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   targetScrollProgress = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+  resetBgIdleTimer(); // Reset the 20s timer whenever user scrolls
 }
 
 // ============================================
@@ -370,6 +382,7 @@ function init() {
   setupCardAnimations();
   setupLangToggle();
   setupConfetti();
+  resetBgIdleTimer(); // Start the idle timer
 
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onResize);
