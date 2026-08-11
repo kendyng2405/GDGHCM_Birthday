@@ -28,48 +28,50 @@ export function createParticles(totalLength) {
 
     initialPositions.push({ x, y, z, phase: Math.random() * Math.PI * 2 });
 
-    // Load and downscale asynchronously to save VRAM
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.src = url;
-    img.onload = () => {
-      const MAX_SIZE = 256;
-      let w = img.width;
-      let h = img.height;
-      if (w > MAX_SIZE || h > MAX_SIZE) {
-        const ratio = Math.min(MAX_SIZE / w, MAX_SIZE / h);
-        w = Math.round(w * ratio);
-        h = Math.round(h * ratio);
-      }
-      
-      sharedCanvas.width = w;
-      sharedCanvas.height = h;
-      sharedCtx.clearRect(0, 0, w, h);
-      sharedCtx.drawImage(img, 0, 0, w, h);
-      
-      const imageData = sharedCtx.getImageData(0, 0, w, h);
-      const tex = new THREE.DataTexture(imageData.data, w, h, THREE.RGBAFormat);
-      tex.colorSpace = THREE.SRGBColorSpace;
-      tex.needsUpdate = true;
-      
-      const material = new THREE.SpriteMaterial({
-        map: tex,
-        color: 0xffffff,
-        transparent: true,
-        opacity: 0 // Will fade in during update
-      });
-      
-      const sprite = new THREE.Sprite(material);
-      sprite.position.set(x, y, z);
-      
-      // SMALL SIZE so they don't block the screen
-      const scaleFactor = Math.random() * 5 + 7; // Range: 7 to 12
-      const aspectRatio = w / h || 1.5;
-      sprite.scale.set(scaleFactor * aspectRatio, scaleFactor, 1);
-      
-      sprite.userData.index = i;
-      group.add(sprite);
-    };
+    // Load and downscale asynchronously, STAGGERED to prevent network bottleneck
+    setTimeout(() => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = url;
+      img.onload = () => {
+        const MAX_SIZE = 256;
+        let w = img.width;
+        let h = img.height;
+        if (w > MAX_SIZE || h > MAX_SIZE) {
+          const ratio = Math.min(MAX_SIZE / w, MAX_SIZE / h);
+          w = Math.round(w * ratio);
+          h = Math.round(h * ratio);
+        }
+        
+        sharedCanvas.width = w;
+        sharedCanvas.height = h;
+        sharedCtx.clearRect(0, 0, w, h);
+        sharedCtx.drawImage(img, 0, 0, w, h);
+        
+        const imageData = sharedCtx.getImageData(0, 0, w, h);
+        const tex = new THREE.DataTexture(imageData.data, w, h, THREE.RGBAFormat);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        tex.needsUpdate = true;
+        
+        const material = new THREE.SpriteMaterial({
+          map: tex,
+          color: 0xffffff,
+          transparent: true,
+          opacity: 0 // Will fade in during update
+        });
+        
+        const sprite = new THREE.Sprite(material);
+        sprite.position.set(x, y, z);
+        
+        // SMALL SIZE so they don't block the screen
+        const scaleFactor = Math.random() * 5 + 7; // Range: 7 to 12
+        const aspectRatio = w / h || 1.5;
+        sprite.scale.set(scaleFactor * aspectRatio, scaleFactor, 1);
+        
+        sprite.userData.index = i;
+        group.add(sprite);
+      };
+    }, i * 50); // 50ms delay between each image request (total ~7.5s for 150 images)
   }
 
   group.userData.initialPositions = initialPositions;
